@@ -21,7 +21,10 @@ jobs:
         run: composer install --no-dev --optimize-autoloader
 
       - name: Run Script to Create Instance
-        run: php index.php
+        run: php index.php |
+             echo "$OCI_KEY_FILE_CONTENTS" > $OCI_PRIVATE_KEY_FILENAME
+             php index.php
+        
         env:
           OCI_REGION: ${{ secrets.OCI_REGION }}
           OCI_USER_ID: ${{ secrets.OCI_USER_ID }}
@@ -36,6 +39,5 @@ jobs:
           OCI_SHAPE: ${{ secrets.OCI_SHAPE }}
           OCI_MAX_INSTANCES: ${{ secrets.OCI_MAX_INSTANCES }}
           OCI_SSH_PUBLIC_KEY: ${{ secrets.OCI_SSH_PUBLIC_KEY }}
-          OCI_KEY_FILE_CONTENTS: ${{ secrets.OCI_KEY_FILE_CONTENTS }}  # <-- 이것도 꼭 추가!
-          OCI_REGION: ${{ secrets.OCI_REGION }}
+          OCI_KEY_FILE_CONTENTS: ${{ secrets.OCI_KEY_FILE_CONTENTS }}
           
