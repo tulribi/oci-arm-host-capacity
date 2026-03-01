@@ -36,3 +36,6 @@ jobs:
           OCI_SHAPE: ${{ secrets.OCI_SHAPE }}
           OCI_MAX_INSTANCES: ${{ secrets.OCI_MAX_INSTANCES }}
           OCI_SSH_PUBLIC_KEY: ${{ secrets.OCI_SSH_PUBLIC_KEY }}
+          OCI_KEY_FILE_CONTENTS: ${{ secrets.OCI_KEY_FILE_CONTENTS }}  # <-- 이것도 꼭 추가!
+          OCI_REGION: ${{ secrets.OCI_REGION }}
+          
