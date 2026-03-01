@@ -21,9 +21,10 @@ jobs:
         run: composer install --no-dev --optimize-autoloader
 
       - name: Run Script to Create Instance
-        run: php index.php |
-             echo "$OCI_KEY_FILE_CONTENTS" > $OCI_PRIVATE_KEY_FILENAME
-             php index.php
+        run: |
+              echo "$OCI_KEY_FILE_CONTENTS" > key.pem
+              export OCI_PRIVATE_KEY_FILENAME="key.pem"
+              php index.php
         
         env:
           OCI_REGION: ${{ secrets.OCI_REGION }}
